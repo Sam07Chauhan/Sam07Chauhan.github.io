@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shivam Chauhan — .NET &amp; Cloud Developer</title>
+<meta name="description" content="Shivam Chauhan — .NET developer building scalable web applications with ASP.NET, C#, SQL, and AWS. Open to relocation and visa sponsorship." />
+<style>
+  :root{
+    --paper:#FAF9F4;
+    --paper-2:#F2F0E8;
+    --ink:#1B1E24;
+    --ink-soft:#4B4F58;
+    --rule:#DAD4C4;
+    --blue:#22408A;
+    --blue-soft:#3E5AAE;
+    --amber:#B8720F;
+    --max:720px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue); color:#fff; }
+
+  a{ color:var(--blue); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--blue); outline-offset:3px;
+  }
+
+  h1,h2,h3{
+    font-family:Georgia,Cambria,"Times New Roman",serif;
+    color:var(--ink);
+    margin:0;
+  }
+
+  .mono{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.82rem;
+    letter-spacing:0.01em;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .prose{ max-width:var(--max); }
+
+  /* ---------- Header ---------- */
+  header.site{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 28px;
+    max-width:1080px;
+    margin:0 auto;
+  }
+  .brand{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .brand span{ color:var(--blue); }
+  nav.site a{
+    color:var(--ink-soft);
+    margin-left:22px;
+    font-size:0.92rem;
+  }
+  nav.site a:hover{ color:var(--blue); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    padding:36px 0 64px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.4rem);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .hero .role{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    margin-bottom:22px;
+    max-width:46ch;
+  }
+  .hero .meta p{
+    color:var(--ink-soft);
+    font-size:0.94rem;
+    margin:0 0 6px;
+  }
+  .hero .meta{ margin-bottom:26px; }
+  .hero .meta .sep{ color:var(--rule); margin:0 8px; }
+
+  .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+  .btn{
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid var(--ink);
+    border-radius:2px;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); text-decoration:none; }
+  .btn.primary{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
+  }
+  .btn.primary:hover{ background:var(--blue-soft); border-color:var(--blue-soft); }
+
+  .diagram-wrap{ width:100%; }
+  .diagram-wrap svg{ width:100%; height:auto; display:block; }
+  .diagram-cap{
+    margin-top:10px;
+    color:var(--ink-soft);
+    font-size:0.78rem;
+    text-align:center;
+  }
+
+  .draw{
+    stroke-dasharray:340;
+    stroke-dashoffset:340;
+    animation:draw 1.6s ease forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .fade{
+    opacity:0;
+    animation:fadeIn 0.6s ease forwards;
+  }
+  @keyframes fadeIn{ to{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){
+    .draw{ animation:none; stroke-dashoffset:0; }
+    .fade{ animation:none; opacity:1; }
+  }
+
+  /* ---------- Section framing ---------- */
+  section{ padding:50px 0; border-top:1px solid var(--rule); }
+  section:first-of-type{ border-top:none; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:20px;
+    margin-bottom:28px;
+  }
+  .section-head h2{ font-size:1.5rem; }
+  .section-head .tag{ color:var(--ink-soft); }
+
+  p{ color:var(--ink-soft); margin:0 0 14px; }
+  .prose p:last-child{ margin-bottom:0; }
+
+  /* ---------- Timeline ---------- */
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{
+    content:"";
+    position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--rule);
+  }
+  .tl-item{ position:relative; padding-bottom:34px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:"";
+    position:absolute; left:-26px; top:6px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--blue);
+  }
+  .tl-item h3{ font-size:1.08rem; margin-bottom:2px; }
+  .tl-item .company{ color:var(--blue); font-weight:600; }
+  .tl-item .dates{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+    display:block;
+  }
+  .tl-item p{ max-width:64ch; }
+  .tl-item ul{
+    margin:10px 0 0;
+    padding-left:18px;
+    color:var(--ink-soft);
+  }
+  .tl-item li{ margin-bottom:6px; max-width:62ch; }
+  .tl-item .tech{
+    margin-top:10px;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+  }
+  .tl-item .tech em{ font-style:normal; color:var(--ink); }
+
+  /* ---------- Project ---------- */
+  .project-block{
+    border:1px solid var(--rule);
+    padding:26px 28px;
+    background:var(--paper-2);
+  }
+  .project-block h3{ font-size:1.2rem; margin-bottom:6px; }
+  .project-block p{ max-width:66ch; }
+  .project-block + .project-block{ margin-top:20px; }
+  .project-block .status{
+    display:inline-block;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.72rem;
+    color:var(--amber);
+    border:1px solid var(--amber);
+    padding:2px 8px;
+    border-radius:2px;
+    margin-bottom:14px;
+  }
+  .project-block ul{
+    margin:14px 0 0; padding-left:18px; color:var(--ink-soft);
+  }
+  .project-block li{ margin-bottom:8px; max-width:66ch; }
+  .project-block li strong{ color:var(--ink); font-weight:600; }
+  .project-block li code{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.85em;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:1px 5px;
+    border-radius:2px;
+    color:var(--ink);
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:24px;
+  }
+  .skill-cat h3{
+    font-size:0.78rem;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    color:var(--ink-soft);
+    font-weight:400;
+    margin-bottom:10px;
+    text-transform:lowercase;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .skill-cat .chips{ margin-top:0; }
+  .chip{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.74rem;
+    color:var(--ink);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    padding:3px 8px;
+    background:transparent;
+  }
+
+  /* ---------- Education ---------- */
+  .edu-item{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:20px;
+    padding:12px 0;
+    border-top:1px solid var(--rule);
+  }
+  .edu-item:first-child{ border-top:none; }
+  .edu-item .dates{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:10px;
+  }
+  .contact-row a{ color:var(--ink); }
+  .contact-row a:hover{ color:var(--blue); }
+
+  footer{
+    padding:30px 0 50px;
+    color:var(--ink-soft);
+    font-size:0.8rem;
+  }
+
+  @media (max-width: 760px){
+    .hero{ grid-template-columns:1fr; padding-top:20px; }
+    .hero .diagram-wrap{ order:-1; max-width:340px; margin:0 auto 8px; }
+    header.site{ flex-direction:column; gap:10px; align-items:flex-start; }
+    nav.site a{ margin-left:0; margin-right:18px; }
+    .edu-item{ grid-template-columns:1fr; gap:4px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">Shivam<span>Chauhan</span></div>
+  <nav class="site">
+    <a href="#work">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div>
+      <h1>Shivam Chauhan</h1>
+      <p class="role">.NET developer building scalable web applications with ASP.NET, C#, SQL, and AWS cloud technologies.</p>
+      <div class="meta">
+        <p>ASP.NET Core, C#, SQL Server, AWS</p>
+        <p>Docker, Microservices Architecture</p>
+        <p>India <span class="sep">·</span> Open to relocation, visa sponsorship required</p>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:shivam07chauhan@gmail.com">Email me</a>
+        <a class="btn" href="tel:+917007648833">Call</a>
+        <a class="btn" href="#" id="linkedin-link" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of a request moving from client through an ASP.NET API to SQL Server and AWS services.">
+        <g fill="none" stroke="#22408A" stroke-width="1.4">
+          <rect x="150" y="10" width="80" height="34" rx="3" class="draw"/>
+          <rect x="150" y="120" width="80" height="40" rx="3" class="draw" style="animation-delay:.15s"/>
+          <rect x="20" y="220" width="80" height="36" rx="3" class="draw" style="animation-delay:.3s"/>
+          <rect x="150" y="220" width="80" height="36" rx="3" class="draw" style="animation-delay:.4s"/>
+          <rect x="280" y="220" width="80" height="36" rx="3" class="draw" style="animation-delay:.5s"/>
+          <rect x="150" y="70" width="80" height="34" rx="3" class="draw" style="animation-delay:.1s" stroke-dasharray="228" stroke-dashoffset="228"/>
+        </g>
+        <g stroke="#8A93A6" stroke-width="1">
+          <line x1="190" y1="44" x2="190" y2="70" class="draw" style="animation-delay:.5s"/>
+          <line x1="190" y1="104" x2="190" y2="120" class="draw" style="animation-delay:.6s"/>
+          <line x1="190" y1="160" x2="60" y2="220" class="draw" style="animation-delay:.7s"/>
+          <line x1="190" y1="160" x2="190" y2="220" class="draw" style="animation-delay:.75s"/>
+          <line x1="190" y1="160" x2="320" y2="220" class="draw" style="animation-delay:.8s"/>
+        </g>
+        <g font-family="SFMono-Regular,Consolas,Menlo,monospace" font-size="11" fill="#1B1E24" class="fade" style="animation-delay:1s;">
+          <text x="190" y="31" text-anchor="middle">request</text>
+          <text x="190" y="91" text-anchor="middle" fill="#4B4F58" font-size="9">HTTPS</text>
+          <text x="190" y="144" text-anchor="middle">ASP.NET API</text>
+          <text x="60" y="242" text-anchor="middle">SQL</text>
+          <text x="190" y="242" text-anchor="middle">Lambda</text>
+          <text x="320" y="242" text-anchor="middle">S3 / DynamoDB</text>
+        </g>
+      </svg>
+      <p class="diagram-cap mono">a request moving through the kind of stack I build — ASP.NET, SQL Server, AWS</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="prose">
+      <p>I'm a results-driven software developer focused on designing, building, and optimizing scalable web applications. Most of my work sits on the ASP.NET, C#, and SQL Server stack, backed by AWS for cloud deployment — Lambda, S3, and DynamoDB in particular.</p>
+      <p>I care about the full lifecycle of a feature: clean architecture up front, solid debugging and performance tuning along the way, and a final product that's actually pleasant to use. I've worked across government, corporate, and product teams, usually in Agile Scrum environments with close collaboration between developers, system analysts, and product owners.</p>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span class="tag mono">2021 — present</span>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <h3>.NET Developer</h3>
+        <span class="company">P. E. Analytics Ltd</span>
+        <span class="dates">Jul 2025 — present</span>
+        <ul>
+          <li>Engineered web applications using ASP.NET MVC and Angular within an Agile Scrum environment, participating in sprint planning and daily stand-ups to deliver complex workflows on time.</li>
+          <li>Managed and optimized SQL for high-velocity data ingestion, ensuring data integrity across distributed systems.</li>
+          <li>Used Docker for efficient containerized application deployment.</li>
+          <li>Collaborated closely with system analysts, product owners, and cross-functional teams to translate business requirements into technical specifications and feasible deliverables.</li>
+        </ul>
+        <p class="tech"><em>Technologies:</em> ASP.NET MVC, Angular, SQL, Docker</p>
+      </div>
+      <div class="tl-item">
+        <h3>ASP.NET Developer</h3>
+        <span class="company">Paramount Infosystem Pvt Ltd</span>
+        <span class="dates">Sep 2024 — Jul 2025</span>
+        <ul>
+          <li>Developed and maintained high-performance ASP.NET applications.</li>
+          <li>Implemented AWS Lambda for serverless computing and managed DynamoDB &amp; S3 for scalable cloud deployments, ensuring code compliance with security and data-risk policies.</li>
+          <li>Standardized local development environments using Docker, eliminating environment drift, accelerating developer onboarding, and optimizing the CI/CD pipeline.</li>
+        </ul>
+        <p class="tech"><em>Technologies:</em> ASP.NET, AWS Lambda, DynamoDB, S3, Docker, CI/CD</p>
+      </div>
+      <div class="tl-item">
+        <h3>Software Developer</h3>
+        <span class="company">Mectoi Technologies Pvt Ltd</span>
+        <span class="dates">Aug 2022 — Apr 2024</span>
+        <ul>
+          <li>Designed and developed scalable web applications with a focus on security and performance.</li>
+          <li>Optimized database structures and improved query performance.</li>
+          <li>Debugged and resolved complex software issues, ensuring seamless application functionality.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <h3>Software Development Intern</h3>
+        <span class="company">Also Energy Inc</span>
+        <span class="dates">Oct 2021 — Nov 2021</span>
+        <ul>
+          <li>Gained hands-on experience in C#, .NET MVC, and JSON/XML parsing.</li>
+          <li>Debugged and optimized applications, improving performance and efficiency.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-cat">
+        <h3>languages &amp; frameworks</h3>
+        <div class="chips">
+          <span class="chip">C#</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Python</span>
+          <span class="chip">ASP.NET Core</span>
+          <span class="chip">ASP.NET MVC</span>
+          <span class="chip">Microservices Architecture</span>
+          <span class="chip">Agile / SDLC</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>databases &amp; reporting</h3>
+        <div class="chips">
+          <span class="chip">MS SQL Server</span>
+          <span class="chip">T-SQL</span>
+          <span class="chip">Crystal Reports</span>
+          <span class="chip">AWS DynamoDB</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>cloud &amp; devops</h3>
+        <div class="chips">
+          <span class="chip">AWS Lambda</span>
+          <span class="chip">AWS S3</span>
+          <span class="chip">Docker</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">IIS Server</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>tooling</h3>
+        <div class="chips">
+          <span class="chip">Git</span>
+          <span class="chip">Debugging</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>ai / ml (personal projects)</h3>
+        <div class="chips">
+          <span class="chip">Ollama / Llama 3</span>
+          <span class="chip">Stable Diffusion</span>
+          <span class="chip">YOLOv8</span>
+          <span class="chip">MediaPipe</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">React 19 / Vite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+    </div>
+
+    <div class="project-block">
+      <span class="status">personal project</span>
+      <h3>M4 AI Nexus Core</h3>
+      <p>A local, privacy-first 3-tier AI orchestration stack built for Apple Silicon, combining a React chat dashboard, a .NET 9 gateway, and a Python ML worker to route natural-language requests into image editing, computer-vision analysis, or text-to-SQL — entirely local, with no cloud dependencies or API costs.</p>
+      <ul>
+        <li><strong>Gateway —</strong> a .NET 9 ASP.NET Core Web API that injects live MySQL schema metadata and forwards multipart requests to the Python worker.</li>
+        <li><strong>Intent routing —</strong> a local Llama 3 model (via Ollama) classifies each request into an image-edit, analysis, or database-query pipeline.</li>
+        <li><strong>Image editing —</strong> YOLOv8 segmentation, a face-shield step to protect facial regions, and Compel multi-chunk Stable Diffusion inpainting that handles prompts beyond the standard 77-token limit.</li>
+        <li><strong>Computer vision —</strong> MediaPipe face/hand landmarking, YOLOv8 pose and object detection, and CLIP zero-shot classification.</li>
+        <li><strong>Text-to-SQL —</strong> reads live schema from MySQL's <code>INFORMATION_SCHEMA</code> and prompts Llama 3 to generate executable SQL grounded in the real table structure.</li>
+      </ul>
+      <div class="chips">
+        <span class="chip">React 19</span>
+        <span class="chip">Vite</span>
+        <span class="chip">Tailwind CSS</span>
+        <span class="chip">.NET 9</span>
+        <span class="chip">Python / FastAPI</span>
+        <span class="chip">PyTorch (MPS)</span>
+        <span class="chip">YOLOv8</span>
+        <span class="chip">Stable Diffusion</span>
+        <span class="chip">MediaPipe</span>
+        <span class="chip">Ollama / Llama 3</span>
+        <span class="chip">MySQL</span>
+      </div>
+    </div>
+
+    <div class="project-block">
+      <h3>UPKVIB</h3>
+      <p>A government website developed with a focus on a clean, user-friendly interface.</p>
+    </div>
+    <div class="project-block">
+      <h3>ASMC Gazipur</h3>
+      <p>A public-facing website built with an emphasis on usability and accessibility.</p>
+    </div>
+    <div class="project-block">
+      <h3>OIMS</h3>
+      <p>A warehouse and logistics policy application supporting operational workflows.</p>
+    </div>
+    <div class="project-block">
+      <h3>UPLC Website</h3>
+      <p>A corporate web solution designed and deployed end to end.</p>
+    </div>
+    <div class="project-block">
+      <h3>Chatbot</h3>
+      <p>A conversational chatbot built in Python.</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <h2>Education</h2>
+    </div>
+    <div class="edu-item">
+      <span class="dates">2022</span>
+      <div>B.Tech, Electronics and Communication Engineering — SRMGPC, Lucknow</div>
+    </div>
+    <div class="edu-item">
+      <span class="dates">—</span>
+      <div>Intermediate &amp; High School — UP Board</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <h2>Get in touch</h2>
+    </div>
+    <p class="prose">Open to full-time roles, immediate relocation, and visa sponsorship — happy to talk about anything in ASP.NET, C#, SQL, or AWS.</p>
+    <div class="contact-row mono">
+      <a href="mailto:shivam07chauhan@gmail.com">shivam07chauhan@gmail.com</a>
+      <a href="tel:+917007648833">+91 70076 48833</a>
+      <a href="#" id="linkedin-link-2" target="_blank" rel="noopener">LinkedIn profile</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="mono">shivamchauhan.dev &nbsp;·&nbsp; built by Shivam Chauhan</div>
+  </div>
+</footer>
+
+</body>
+</html>
